@@ -1,0 +1,81 @@
+1. Crear y ejecutar un contenedor desde una imagen
+
+docker run <image name>
+
+docker run busybox
+
+---
+
+sobrescribiendo el comando por defecto
+
+docker run <image name> <command>
+
+docker run busybox echo hi there
+
+
+
+2. Lista de contenedores
+
+Actuales:
+
+docker ps
+
+
+---
+Todos los contenedores que han sido creados en mi máquina
+
+docker ps --all
+
+
+
+
+3. Remover contenedores
+
+docker system prune
+
+
+4. Logs
+
+docker logs <id>	
+
+
+
+5. Detener un contenedor
+
+docker stop <id>
+
+docker kill <id>
+
+
+6. Ejecutar un comando adicional en un contenedor
+
+docker exec -it <id> <command>
+
+
+
+7. Usar el prompt
+
+docke exec -it <id> sh
+
+
+8. Tag an image
+
+
+docker build -t <myDockerID>/<projectName>:<version>
+
+docker build -t marcos085/redis:latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
