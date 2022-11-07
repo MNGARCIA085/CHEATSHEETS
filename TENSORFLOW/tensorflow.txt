@@ -1,0 +1,41 @@
+
+# salvar un modelo
+
+model.save(<nombre>)
+model.save("my_keras_model.h5")
+
+
+
+# cargar un modelo
+
+model = keras.models.load_model(<nombre>)
+model = keras.models.load_model("my_keras_model.h5")
+
+
+
+# callbacks
+
+poner un breakpoint, para guardar datos intermedios si por ejemplo
+el entrenamiento es largo
+
+[...] # build and compile the model
+checkpoint_cb = keras.callbacks.ModelCheckpoint("my_keras_model.h5")
+history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb])
+
+
+forma simple de early stopping
+checkpoint_cb = keras.callbacks.ModelCheckpoint("my_keras_model.h5",save_best_only=True)
+history = model.fit(X_train, y_train, epochs=10,
+	validation_data=(X_valid, y_valid),
+	callbacks=[checkpoint_cb])
+model = keras.models.load_model("my_keras_model.h5") # rollback to best model
+
+
+y un poco mejor:
+
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=10,
+restore_best_weights=True)
+history = model.fit(X_train, y_train, epochs=100,
+validation_data=(X_valid, y_valid),
+callbacks=[checkpoint_cb, early_stopping_cb])
+
